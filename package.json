@@ -16,7 +16,8 @@
     ]
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:staged": "jest"
   },
   "dependencies": {
     "express": "^4.17.1"
