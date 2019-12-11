@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "diglopes <diego-chez@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^14.3.1"
+  }
 }
