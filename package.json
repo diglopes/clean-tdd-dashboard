@@ -16,7 +16,7 @@
     ]
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "test:staged": "jest"
   },
   "dependencies": {
