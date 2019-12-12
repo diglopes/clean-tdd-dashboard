@@ -18,7 +18,7 @@
   "scripts": {
     "test": "jest --watch --silent --noStackTrace",
     "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
-    "test:ci": "jest --coverage"
+    "test:ci": "jest --coverage --noStackTrace --silent"
   },
   "dependencies": {
     "express": "^4.17.1"
