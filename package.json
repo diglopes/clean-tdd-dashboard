@@ -16,8 +16,8 @@
     ]
   },
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest --passWithNoTests"
+    "test": "jest --watch --silent --noStackTrace",
+    "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace"
   },
   "dependencies": {
     "express": "^4.17.1"
