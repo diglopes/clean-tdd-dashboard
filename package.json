@@ -23,6 +23,7 @@
     "test:ci": "npm test -- --coverage"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "validator": "^12.1.0"
   }
 }
