@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "jest --watchAll",
-    "test:staged": "jest"
+    "test:staged": "jest --passWithNoTests"
   },
   "dependencies": {
     "express": "^4.17.1"
