@@ -26,7 +26,8 @@ class AuthUseCase {
       return null
     }
 
-    this.tokenGeneratorSpy.generate(user.id)
+    const accessToken = this.tokenGeneratorSpy.generate(user.id)
+    return accessToken
   }
 }
 
