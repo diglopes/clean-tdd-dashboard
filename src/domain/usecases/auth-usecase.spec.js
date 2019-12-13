@@ -48,13 +48,13 @@ const makeTokenGeneratorWithError = () => {
 }
 
 const makeLoadUserByEmailRepo = () => {
-  class LoadUserByEmailRepo {
+  class LoadUserByEmailRepoSpy {
     async load (email) {
       this.email = email
       return this.user
     }
   }
-  const loadUserByEmailRepo = new LoadUserByEmailRepo()
+  const loadUserByEmailRepo = new LoadUserByEmailRepoSpy()
   loadUserByEmailRepo.user = {
     id: 'any_id',
     password: 'hashed_password'
@@ -63,13 +63,13 @@ const makeLoadUserByEmailRepo = () => {
 }
 
 const makeLoadUserByEmailRepoWithError = () => {
-  class LoadUserByEmailRepo {
+  class LoadUserByEmailRepoSpy {
     async load (email) {
       throw new Error()
     }
   }
 
-  return new LoadUserByEmailRepo()
+  return new LoadUserByEmailRepoSpy()
 }
 
 const makeUpdateAccessTokenRepo = () => {
