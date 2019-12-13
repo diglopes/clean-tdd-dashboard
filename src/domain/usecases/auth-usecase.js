@@ -1,7 +1,8 @@
 const { MissingParamError } = require('../../utils/errors')
 
 class AuthUseCase {
-  constructor ({ loadUserByEmailRepo, encrypter, tokenGenerator }) {
+  constructor (args = {}) {
+    const { loadUserByEmailRepo, encrypter, tokenGenerator } = args
     this.loadUserByEmailRepo = loadUserByEmailRepo
     this.encrypter = encrypter
     this.tokenGenerator = tokenGenerator
