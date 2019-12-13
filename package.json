@@ -23,6 +23,7 @@
     "test:ci": "npm test -- --coverage"
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "express": "^4.17.1",
     "validator": "^12.1.0"
   }
