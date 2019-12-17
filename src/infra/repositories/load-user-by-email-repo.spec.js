@@ -12,6 +12,10 @@ class LoadUserByEmailRepo {
   }
 }
 
+const makeSut = () => {
+  return new LoadUserByEmailRepo(UserSchema)
+}
+
 describe('LoadUserByEmail Repository', () => {
   beforeAll(async () => {
     const url = 'mongodb://localhost:27017/test'
@@ -30,7 +34,7 @@ describe('LoadUserByEmail Repository', () => {
   })
 
   test('Should return null if no user is found', async () => {
-    const sut = new LoadUserByEmailRepo(UserSchema)
+    const sut = makeSut()
     const user = await sut.load('invalid_email@email.com')
     expect(user).toBeNull()
   })
@@ -38,7 +42,7 @@ describe('LoadUserByEmail Repository', () => {
   test('Should return an user if user is found', async () => {
     const email = 'valid_email@email.com'
     await UserSchema.create({ email })
-    const sut = new LoadUserByEmailRepo(UserSchema)
+    const sut = makeSut()
     const user = await sut.load(email)
     expect(user.email).toBe(email)
   })
