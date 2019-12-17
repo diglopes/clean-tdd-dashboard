@@ -8,7 +8,10 @@ class LoadUserByEmailRepo {
 
   async load (email) {
     const user = await this.UserSchema.findOne({ email })
-    return user
+    if (!user) {
+      return null
+    }
+    return { _id: user._id, password: user.password }
   }
 }
 
@@ -40,10 +43,16 @@ describe('LoadUserByEmail Repository', () => {
   })
 
   test('Should return an user if user is found', async () => {
-    const email = 'valid_email@email.com'
-    await UserSchema.create({ email })
+    const fakeUser = await UserSchema.create({
+      email: 'valid_email@email.com',
+      password: '123456',
+      name: 'João'
+    })
     const sut = makeSut()
-    const user = await sut.load(email)
-    expect(user.email).toBe(email)
+    const user = await sut.load('valid_email@email.com')
+    expect(user).toEqual({
+      _id: fakeUser._id,
+      password: fakeUser.password
+    })
   })
 })
