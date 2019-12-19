@@ -11,6 +11,6 @@ module.exports = {
   },
 
   async disconnect () {
-    await this.connection.disconnect()
+    await this.connection.close()
   }
 }
