@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
 const UserSchema = require('./schemas/user-schema')
 const LoadUserByEmailRepo = require('./load-user-by-email-repo')
+const MongoHelper = require('../helpers/mongo-helper')
 
 const makeSut = () => {
   return new LoadUserByEmailRepo(UserSchema)
@@ -8,11 +8,8 @@ const makeSut = () => {
 
 describe('LoadUserByEmail Repository', () => {
   beforeAll(async () => {
-    const url = 'mongodb://localhost:27017/test'
-    await mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+    const uri = 'mongodb://localhost:27017/test'
+    await MongoHelper.connect(uri)
   })
 
   beforeEach(async () => {
@@ -20,7 +17,7 @@ describe('LoadUserByEmail Repository', () => {
   })
 
   afterAll(async () => {
-    await mongoose.connection.close()
+    await MongoHelper.disconnect()
   })
 
   test('Should return null if no user is found', async () => {
