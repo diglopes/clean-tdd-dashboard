@@ -6,10 +6,10 @@ class LoadUserByEmailRepo {
   }
 
   async load (email) {
-    const user = await this.UserSchema.findOne({ email })
     if (!email) {
       throw new MissingParamError('email')
     }
+    const user = await this.UserSchema.findOne({ email })
 
     if (!user) {
       return null
