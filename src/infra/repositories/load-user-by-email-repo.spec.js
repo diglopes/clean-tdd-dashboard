@@ -39,4 +39,10 @@ describe('LoadUserByEmail Repository', () => {
       password: fakeUser.password
     })
   })
+
+  test('Should throw if no UserSchema is provided', async () => {
+    const sut = new LoadUserByEmailRepo()
+    const promise = sut.load('any_email@email.com')
+    expect(promise).rejects.toThrow()
+  })
 })
