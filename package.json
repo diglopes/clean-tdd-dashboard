@@ -1,7 +1,7 @@
 {
   "name": "clean-node-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/main/index.js",
   "author": "diglopes <diego-chez@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -16,6 +16,7 @@
     ]
   },
   "scripts": {
+    "start": "node src/main/index.js",
     "test": "jest --passWithNoTests",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
