@@ -19,7 +19,7 @@
     "test": "jest --passWithNoTests",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
-    "test:staged": "npm test -- --findRelatedTests --silent",
+    "test:staged": "npm test -- --findRelatedTests --silent --forceExit",
     "test:ci": "npm test -- --coverage --silent"
   },
   "dependencies": {
