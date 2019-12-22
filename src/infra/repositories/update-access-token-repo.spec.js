@@ -11,6 +11,10 @@ class UpdateAccessTokenRepo {
     if (!userId) {
       throw new MissingParamError('userId')
     }
+
+    if (!accessToken) {
+      throw new MissingParamError('accessToken')
+    }
     await this.userSchema.updateOne({
       _id: userId
     }, {
@@ -59,9 +63,20 @@ describe('UpdateAccessToken Repository', () => {
     expect(promise).rejects.toThrow()
   })
 
-  test('Should throw if no userId are provided', async () => {
+  test('Should throw if no userId is provided', async () => {
     const sut = new UpdateAccessTokenRepo()
     const promise = sut.update()
     expect(promise).rejects.toThrow(new MissingParamError('userId'))
+  })
+
+  test('Should throw if no accessToken is provided', async () => {
+    const fakeUser = await UserSchema.create({
+      email: 'valid_email@email.com',
+      password: 'hashed_password',
+      name: 'João'
+    })
+    const sut = new UpdateAccessTokenRepo()
+    const promise = sut.update(fakeUser._id)
+    expect(promise).rejects.toThrow(new MissingParamError('accessToken'))
   })
 })
