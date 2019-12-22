@@ -43,4 +43,15 @@ describe('UpdateAccessToken Repository', () => {
     const updatedFakeUser = await UserSchema.findById(fakeUser._id)
     expect(updatedFakeUser.accessToken).toBe('valid_token')
   })
+
+  test('Should throw if no UserSchema is provided', async () => {
+    const fakeUser = await UserSchema.create({
+      email: 'valid_email@email.com',
+      password: 'hashed_password',
+      name: 'João'
+    })
+    const sut = new UpdateAccessTokenRepo()
+    const promise = sut.update(fakeUser._id, 'valid_token')
+    expect(promise).rejects.toThrow()
+  })
 })
