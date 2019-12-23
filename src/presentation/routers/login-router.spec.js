@@ -6,7 +6,7 @@ const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
   const emailValidatorSpy = makeEmailValidator()
   authUseCaseSpy.accessToken = 'valid_token'
-  const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
+  const sut = new LoginRouter({ authUseCase: authUseCaseSpy, emailValidator: emailValidatorSpy })
   return {
     authUseCaseSpy,
     sut,
@@ -139,7 +139,7 @@ describe('Login Router', () => {
 
   test('Should return 500 if no EmailValidator is provided', async () => {
     const authUseCaseSpy = makeAuthUseCase()
-    const sut = new LoginRouter(authUseCaseSpy)
+    const sut = new LoginRouter({ authUseCase: authUseCaseSpy })
     const httpRequest = {
       body: {
         email: 'any_email@email.com',
