@@ -1,10 +1,10 @@
 const { UnauthorizedError, ServerError } = require('../errors')
 
 class HttpResponse {
-  static badRequest (Error) {
+  static badRequest (error) {
     return {
       statusCode: 400,
-      body: Error
+      body: { error: error.message }
     }
   }
 
@@ -18,7 +18,7 @@ class HttpResponse {
   static unauthorizedError () {
     return {
       statusCode: 401,
-      body: new UnauthorizedError()
+      body: { error: new UnauthorizedError().message }
     }
   }
 
