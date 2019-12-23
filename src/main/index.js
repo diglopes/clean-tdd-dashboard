@@ -7,7 +7,7 @@ const bootstrap = async () => {
     await MongoHelper.connect(env.mongoUrl)
     console.log('>> Database connected')
 
-    await app.listen(3333, () => console.log('>> Server running'))
+    await app.listen(env.port, () => console.log(`>> Server running on port ${env.port}`))
   } catch (error) {
     console.error(error)
   }
