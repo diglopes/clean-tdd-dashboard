@@ -165,7 +165,7 @@ describe('Auth UseCase', () => {
   test('Should call TokenGenerator with correct userId', async () => {
     const { sut, loadUserByEmailRepoSpy, tokenGeneratorSpy } = makeSut()
     await sut.auth('valid_email@email.com', 'any_password')
-    expect(tokenGeneratorSpy.userId).toBe(loadUserByEmailRepoSpy.user.id)
+    expect(tokenGeneratorSpy.userId).toBe(loadUserByEmailRepoSpy.user._id)
   })
 
   test('Should return an accessToken if correct credentials are provided', async () => {
@@ -187,7 +187,7 @@ describe('Auth UseCase', () => {
     } = makeSut()
     await sut.auth('valid_email@email.com', 'valid_password')
     expect(updateAccessTokenRepoSpy.userId).toBe(
-      loadUserByEmailRepoSpy.user.id
+      loadUserByEmailRepoSpy.user._id
     )
     expect(updateAccessTokenRepoSpy.accessToken).toBe(
       tokenGeneratorSpy.accessToken

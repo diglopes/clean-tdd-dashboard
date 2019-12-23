@@ -22,11 +22,13 @@ class AuthUseCase {
     }
 
     const user = await this.loadUserByEmailRepo.load(email)
+
     const isValid =
       user && (await this.encrypter.compare(password, user.password))
+
     if (isValid) {
-      const accessToken = this.tokenGenerator.generate(user.id)
-      await this.updateAccessTokenRepo.update(user.id, accessToken)
+      const accessToken = await this.tokenGenerator.generate(user._id)
+      await this.updateAccessTokenRepo.update(user._id, accessToken)
       return accessToken
     }
 

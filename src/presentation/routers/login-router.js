@@ -20,6 +20,7 @@ class LoginRouter {
         return HttpResponse.badRequest(new MissingParamError('password'))
       }
       const accessToken = await this.authUseCase.auth(email, password)
+
       if (!accessToken) {
         return HttpResponse.unauthorizedError()
       }
