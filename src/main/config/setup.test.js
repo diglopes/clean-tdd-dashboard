@@ -1,51 +1,57 @@
 const request = require('supertest')
-const app = require('./app')
 
 describe('App Setup', () => {
+  let app
+
+  beforeEach(() => {
+    jest.resetModules()
+    app = require('./app')
+  })
+
   test('Should add Helmet middleware', async () => {
-    app.get('/test_helmet', (req, res) => {
+    app.get('/test', (req, res) => {
       res.send('')
     })
-    const res = await request(app).get('/test_helmet')
+    const res = await request(app).get('/test')
     expect(res.headers['x-powered-by']).toBeUndefined()
   })
 
   test('Should enable CORS', async () => {
-    app.get('/test_cors', (req, res) => {
+    app.get('/test', (req, res) => {
       res.send('')
     })
-    const res = await request(app).get('/test_cors')
+    const res = await request(app).get('/test')
     expect(res.headers['access-control-allow-origin']).toBe('*')
     expect(res.headers['access-control-allow-methods']).toBe('*')
     expect(res.headers['access-control-allow-headers']).toBe('*')
   })
 
   test('Should parse body as JSON', async () => {
-    app.post('/test_json_parser', (req, res) => {
+    app.post('/test', (req, res) => {
       res.send(req.body)
     })
 
     await request(app)
-      .post('/test_json_parser').send({ working: true })
+      .post('/test').send({ working: true })
       .expect({ working: true })
   })
 
   test('Should return json content type as default', async () => {
-    app.get('/test_content_type', (req, res) => {
+    app.get('/test', (req, res) => {
       res.send('')
     })
     await request(app)
-      .get('/test_content_type')
+      .get('/test')
       .expect('content-type', /json/)
   })
 
   test('Should return xml content by forcing it', async () => {
-    app.get('/test_content_type_xml', (req, res) => {
+    app.get('/test', (req, res) => {
       res.type('xml')
       res.send('')
     })
     await request(app)
-      .get('/test_content_type_xml')
+      .get('/test')
       .expect('content-type', /xml/)
   })
 })
