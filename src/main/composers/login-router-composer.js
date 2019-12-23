@@ -8,17 +8,22 @@ const TokenGenerator = require('../../utils/helpers/token-generator')
 const env = require('../config/env')
 const userSchema = require('../../infra/repositories/schemas/user-schema')
 
-const tokenGenerator = new TokenGenerator(env.tokenSecret)
-const encrypter = new Encrypter()
-const loadUserByEmailRepo = new LoadUserByEmailRepo(userSchema)
-const updateAccessTokenRepo = new UpdateAccessTokenRepo(userSchema)
-const emailValidator = new EmailValidator()
-const authUseCase = new AuthUseCase({
-  loadUserByEmailRepo,
-  updateAccessTokenRepo,
-  encrypter,
-  tokenGenerator
-})
-const loginRouter = new LoginRouter({ authUseCase, emailValidator })
+class LoginRouterComposer {
+  static compose () {
+    const tokenGenerator = new TokenGenerator(env.tokenSecret)
+    const encrypter = new Encrypter()
+    const loadUserByEmailRepo = new LoadUserByEmailRepo(userSchema)
+    const updateAccessTokenRepo = new UpdateAccessTokenRepo(userSchema)
+    const emailValidator = new EmailValidator()
+    const authUseCase = new AuthUseCase({
+      loadUserByEmailRepo,
+      updateAccessTokenRepo,
+      encrypter,
+      tokenGenerator
+    })
+    const loginRouter = new LoginRouter({ authUseCase, emailValidator })
+    return loginRouter
+  }
+}
 
-module.exports = loginRouter
+module.exports = LoginRouterComposer
