@@ -1,5 +1,7 @@
-<img src="https://media0.giphy.com/media/eQxrlxPiRd8kw/source.gif" title="FVCproductions" alt="FVCproductions">
-
+<p align="center">
+    <img src="https://media0.giphy.com/media/eQxrlxPiRd8kw/source.gif" title="FVCproductions" alt="FVCproductions">
+<p>
+    
 # Clean Architecture API ![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)
 
 > API built with the wonderful Node.js
